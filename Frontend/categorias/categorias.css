@@ -1,0 +1,45 @@
+.hidden {
+    display: none;
+}
+
+.categorias-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.categorias-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.categoria-item {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}

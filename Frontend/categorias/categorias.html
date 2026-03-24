@@ -1,0 +1,22 @@
+<div class="categorias-header">
+    <h2>Categorías</h2>
+    <button id="btn-nueva-categoria" class="btn-primario">Nueva Categoría</button>
+</div>
+
+<div id="lista-categorias" class="categorias-lista"></div>
+
+<!-- Modal Crear Categoría -->
+<div id="modal-categoria" class="modal hidden">
+    <div class="modal-content">
+        <h3>Nueva Categoría</h3>
+
+        <label>Nombre de la Categoría</label>
+        <input id="nombre-categoria" type="text" placeholder="Ej: Comida, Transporte...">
+
+        <label>Límite de Presupuesto (%)</label>
+        <input id="limite-categoria" type="number" min="1" max="100" placeholder="1-100">
+
+        <button id="crear-categoria" class="btn-primario">Crear Categoría</button>
+        <button id="cerrar-modal" class="btn-secundario">Cancelar</button>
+    </div>
+</div>

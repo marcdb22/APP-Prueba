@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Lógica de Navegación del Sidebar
     const navItems = document.querySelectorAll('.nav-item');
     const sections = document.querySelectorAll('.content-section');
+    const categoryModal = document.getElementById('modal-categoria');
 
     navItems.forEach(item => {
         item.addEventListener('click', (e) => {
@@ -52,19 +53,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetSection.classList.remove('hidden');
             }
 
-            // EXTRA: Si entramos en categorías, abrir automáticamente el popup de nueva categoría
-            if (item.id === 'nav-categorias' && categoryModal) {
-                categoryModal.classList.remove('hidden');
+            // EXTRA: Si entramos en categorías, cargar datos
+            if (item.id === 'nav-categorias') {
+                cargarCategorias();
             }
         });
     });
 
     // 5. Gestión de Categorías
-    const categoryModal = document.getElementById('categoryModal');
-    const openModalBtn = document.getElementById('openCategoryModal');
-    const closeModalBtn = document.getElementById('closeCategoryModal');
+    const openModalBtn = document.getElementById('btn-nueva-categoria');
+    const closeModalBtn = document.getElementById('cerrar-modal');
     const categoryForm = document.getElementById('categoryForm');
-    const categoriesList = document.getElementById('categoriesList');
+    const categoriesList = document.getElementById('lista-categorias');
 
     // Abrir/Cerrar Modal
     if (openModalBtn) {
@@ -119,35 +119,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (categorias.length === 0) {
             categoriesList.innerHTML = '<p style="color: #64748b; text-align: center; width: 100%; padding: 40px;">No tienes categorías creadas todavía.</p>';
+            // Si no hay categorías, abrir el modal automáticamente (según nueva lógica)
+            if (categoryModal) categoryModal.classList.remove('hidden');
             return;
         }
 
         categoriesList.innerHTML = categorias.map(cat => `
-            <div class="category-card">
-                <header>
-                    <h4>${cat.nombre}</h4>
-                    <span class="category-limit">${cat.limite}%</span>
-                </header>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 0%"></div>
-                </div>
-                <div class="category-info">
-                    <span>Gastado: 0.00€</span>
-                    <span>Límite: ${cat.limite}%</span>
-                </div>
+            <div class="categoria-item">
+                <h3>${cat.nombre}</h3>
+                <p>Límite: ${cat.limite}%</p>
             </div>
         `).join('');
     }
 
     // Manejar envío del formulario
-    if (categoryForm) {
-        categoryForm.addEventListener('submit', async (e) => {
+    const btnCrearCategoria = document.getElementById('crear-categoria');
+    if (btnCrearCategoria) {
+        btnCrearCategoria.addEventListener('click', async (e) => {
             e.preventDefault();
             
-            const formData = new FormData(categoryForm);
+            const nombre = document.getElementById('nombre-categoria').value;
+            const limite = Number(document.getElementById('limite-categoria').value);
+            
+            if (!nombre || !limite) {
+                alert('Por favor, rellena todos los campos');
+                return;
+            }
+
             const body = {
-                nombre: formData.get('nombre'),
-                limite: Number(formData.get('limite')),
+                nombre,
+                limite,
                 usuario_id: usuario._id
             };
 

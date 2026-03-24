@@ -96,15 +96,16 @@
                 </div>
             </div>
 
-            <section class="recent-activity">
-                <div class="section-header">
-                    <h2>Actividad Reciente</h2>
-                    <button class="view-all">Ver todo</button>
-                </div>
-                <div class="activity-list" id="activityList">
-                    <!-- Los movimientos aparecerán aquí -->
-                    <p style="color: #94a3b8; text-align: center; padding: 20px;">No hay actividad reciente.</p>
-                </div>
+                <section class="recent-activity">
+                    <div class="section-header">
+                        <h2>Actividad Reciente</h2>
+                        <button class="view-all">Ver todo</button>
+                    </div>
+                    <div class="activity-list" id="activityList">
+                        <!-- Los movimientos aparecerán aquí -->
+                        <p style="color: #94a3b8; text-align: center; padding: 20px;">No hay actividad reciente.</p>
+                    </div>
+                </section>
             </section>
 
             <!-- Sección Gastos -->
@@ -128,10 +129,10 @@
                         <h1>Categorías</h1>
                         <p>Organiza tus gastos en categorías personalizadas.</p>
                     </div>
-                    <button id="openCategoryModal" class="submit-btn" style="width: auto; padding: 10px 20px;">+ Nueva Categoría</button>
+                    <button id="btn-nueva-categoria" class="btn-primario" style="width: auto; padding: 10px 20px;">+ Nueva Categoría</button>
                 </header>
                 
-                <div class="categories-grid" id="categoriesList">
+                <div id="lista-categorias" class="categorias-lista">
                     <!-- Las categorías se cargarán aquí -->
                     <p style="color: #64748b; text-align: center; width: 100%; padding: 40px;">Cargando categorías...</p>
                 </div>
@@ -164,26 +165,26 @@
             </section>
         </main>
     </div>
-    <!-- Modal para Nueva Categoría -->
-    <div id="categoryModal" class="modal hidden">
+    <!-- Modal para Nueva Categoría (NUEVA VERSIÓN) -->
+    <div id="modal-categoria" class="modal hidden">
         <div class="modal-content">
             <div class="modal-header">
                 <h2>Nueva Categoría</h2>
-                <button id="closeCategoryModal" class="close-btn">&times;</button>
+                <button id="cerrar-modal" class="close-btn">&times;</button>
             </div>
             <form id="categoryForm">
                 <div class="input-group">
-                    <label for="catName">Nombre de la Categoría</label>
-                    <input type="text" id="catName" name="nombre" placeholder="Ej: Comida, Transporte..." required>
+                    <label for="nombre-categoria">Nombre de la Categoría</label>
+                    <input type="text" id="nombre-categoria" name="nombre" placeholder="Ej: Comida, Transporte..." required>
                 </div>
                 <div class="input-group">
-                    <label for="catLimit">Límite de Presupuesto (%)</label>
-                    <input type="number" id="catLimit" name="limite" min="1" max="100" placeholder="1-100" required>
+                    <label for="limite-categoria">Límite de Presupuesto (%)</label>
+                    <input type="number" id="limite-categoria" name="limite" min="1" max="100" placeholder="1-100" required>
                     <small style="color: #64748b; font-size: 12px; margin-top: 5px; display: block;">
                         Este es el porcentaje máximo de tu saldo que quieres dedicar a esta categoría.
                     </small>
                 </div>
-                <button type="submit" class="submit-btn" id="saveCategoryBtn">Crear Categoría</button>
+                <button type="button" class="btn-primario" id="crear-categoria">Crear Categoría</button>
             </form>
         </div>
     </div>
